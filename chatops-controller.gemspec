@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "chatops-controller"
   s.version     = ChatopsController::VERSION
   s.authors     = ["Ben Lavender", "Misty De Meo", "GitHub"]
-  s.homepage    = "https://github.com/github/chatops-controller"
+  s.homepage    = "https://github.com/MrChrisW/chatops-controller"
   s.email       = ["opensource+chatops-controller@github.com"]
   s.license     = "MIT"
   s.summary     = %q{Rails helpers to create JSON-RPC chatops}

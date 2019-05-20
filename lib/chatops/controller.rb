@@ -1,4 +1,7 @@
 require "chatops"
+require 'semantic_logger'
+SemanticLogger.default_level = :debug
+SemanticLogger.add_appender(io: STDOUT, formatter: :default)
 
 module Chatops
   module Controller
@@ -75,6 +78,7 @@ module Chatops
     # `options` supports any of the optional fields documented
     # in the [protocol](../../docs/protocol-description.md).
     def jsonrpc_success(message, options: {})
+      logger.debug("UrgentQueue: [ChatopsController] jsonrpc_success called with message: #{message}")
       response = { :result => message.to_s }
       # do not allow options to override message
       options.delete(:result)
@@ -105,6 +109,7 @@ module Chatops
     end
 
     def jsonrpc_response(hash, http_status = nil)
+      logger.debug("UrgentQueue: [ChatopsController] jsonrpc_response called with hash: #{hash.to_json}")
       http_status ||= 200
       render :status => http_status,
              :json => { :jsonrpc => "2.0",
