@@ -82,7 +82,7 @@ module Chatops
       response = { :result => message.to_s }
       # do not allow options to override message
       options.delete(:result)
-      jsonrpc_response response.merge(options)
+      return jsonrpc_response response.merge(options)
     end
     alias_method :chatop_send, :jsonrpc_success
 
@@ -109,7 +109,6 @@ module Chatops
     end
 
     def jsonrpc_response(hash, http_status = nil)
-      logger.debug("UrgentQueue: [ChatopsController] jsonrpc_response called with hash: #{hash.to_json}")
       http_status ||= 200
       render :status => http_status,
              :json => { :jsonrpc => "2.0",
